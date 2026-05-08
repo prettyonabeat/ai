@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#050507" />
+    <meta
+      name="description"
+      content="A premium dark landing page for a luxury coffee shop — cinematic black & gold, glassmorphism cards, smooth animations."
+    />
+    <title>Aurum Noir Coffee</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:opsz,wght@5..120,500;5..120,600;5..120,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!-- Быстрая ссылка для клавиатурной навигации -->
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Прелоадер: создаёт «премиум» ощущение входа -->
+    <div class="loader" id="loader" aria-hidden="true">
+      <div class="loader__inner">
+        <div class="loader__mark" aria-hidden="true">AN</div>
+        <div class="loader__title">Aurum Noir</div>
+        <div class="loader__sub">Preparing the ritual</div>
+        <div class="loader__bar" aria-hidden="true">
+          <div class="loader__barFill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Фоновая сцена: плёночное зерно + золотые свечения -->
+    <div class="bg">
+      <div class="bg__grain" aria-hidden="true"></div>
+      <div class="bg__glow bg__glow--a" aria-hidden="true"></div>
+      <div class="bg__glow bg__glow--b" aria-hidden="true"></div>
+    </div>
+
+    <header class="header" data-elevate>
+      <div class="container header__inner">
+        <a class="brand" href="#top" aria-label="Aurum Noir Coffee home">
+          <span class="brand__mark" aria-hidden="true">AN</span>
+          <span class="brand__text">
+            <span class="brand__name">Aurum Noir</span>
+            <span class="brand__tag">Luxury Coffee Atelier</span>
+          </span>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-panel">
+            <span class="nav__toggleLines" aria-hidden="true"></span>
+            <span class="sr-only">Open menu</span>
+          </button>
+
+          <div class="nav__panel" id="nav-panel">
+            <a class="nav__link" href="#menu">Menu</a>
+            <a class="nav__link" href="#story">Story</a>
+            <a class="nav__link" href="#gallery">Gallery</a>
+            <a class="nav__link" href="#craft">Craft</a>
+            <a class="nav__link" href="#stats">Stats</a>
+            <a class="nav__link" href="#testimonials">Testimonials</a>
+            <a class="nav__link" href="#reserve">Reserve</a>
+            <a class="btn btn--gold btn--sm" href="#reserve">Reserve tasting</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero" id="top" data-parallax="0.28">
+        <div class="container hero__grid">
+          <div class="hero__copy">
+            <p class="eyebrow reveal">Cinematic. Intimate. Rare.</p>
+            <h1 class="hero__title reveal">
+              Where <span class="gold">golden crema</span> meets midnight ambience.
+            </h1>
+            <p class="hero__lead reveal">
+              A luxury coffee experience crafted from single‑origin beans, precision roasting, and a bar‑led tasting ritual.
+            </p>
+
+            <div class="hero__cta reveal">
+              <a class="btn btn--gold" href="#menu">Explore menu</a>
+              <a class="btn btn--ghost" href="#reserve">Reserve</a>
+            </div>
+
+            <div class="hero__stats reveal" role="list" aria-label="Highlights">
+              <div class="stat glass" role="listitem">
+                <div class="stat__value">12+</div>
+                <div class="stat__label">Single‑origin rotations</div>
+              </div>
+              <div class="stat glass" role="listitem">
+                <div class="stat__value">92°</div>
+                <div class="stat__label">Brew‑temp precision</div>
+              </div>
+              <div class="stat glass" role="listitem">
+                <div class="stat__value">5⭐</div>
+                <div class="stat__label">Tasting‑room rated</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero__visual reveal" aria-hidden="true">
+            <div class="orb orb--outer"></div>
+            <div class="orb orb--inner"></div>
+            <div class="heroCard glass">
+              <div class="heroCard__top">
+                <span class="pill">Limited roast</span>
+                <span class="pill pill--muted">Night Edition</span>
+              </div>
+              <div class="heroCard__title">Aurum Signature</div>
+              <div class="heroCard__desc">
+                Dark chocolate · toasted hazelnut · orange zest
+              </div>
+              <div class="heroCard__footer">
+                <div class="price">
+                  <span class="price__amount">$9</span>
+                  <span class="price__note">/ espresso</span>
+                </div>
+                <button class="btn btn--outline btn--sm" type="button" data-toast="Added to wishlist">
+                  Wishlist
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__scroll">
+          <a class="scrollHint" href="#menu" aria-label="Scroll to menu">
+            <span class="scrollHint__dot" aria-hidden="true"></span>
+            <span class="scrollHint__text">Scroll</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- STORYTELLING -->
+      <section class="section section--alt" id="story" data-parallax="0.22">
+        <div class="container">
+          <header class="section__head reveal">
+            <p class="eyebrow">Story</p>
+            <h2 class="section__title">A house of coffee, built like a film.</h2>
+            <p class="section__sub">
+              We source in whispers, roast in small batches, and serve with a quiet confidence — where every detail feels deliberate.
+            </p>
+          </header>
+
+          <div class="storyGrid">
+            <article class="story glass reveal">
+              <div class="story__kicker">Chapter I</div>
+              <h3 class="story__title">The origin</h3>
+              <p class="story__text">
+                Micro‑lots, traceable farms, seasonal profiles — chosen for elegance rather than volume.
+              </p>
+            </article>
+            <article class="story glass reveal">
+              <div class="story__kicker">Chapter II</div>
+              <h3 class="story__title">The roast</h3>
+              <p class="story__text">
+                Controlled development, slow curves, zero rush — tuned for clarity and a long, cinematic finish.
+              </p>
+            </article>
+            <article class="story glass reveal">
+              <div class="story__kicker">Chapter III</div>
+              <h3 class="story__title">The ritual</h3>
+              <p class="story__text">
+                Bar‑led tasting, curated pairings, gold accents — an experience that lingers.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="menu" data-parallax="0.18">
+        <div class="container">
+          <header class="section__head reveal">
+            <p class="eyebrow">Menu</p>
+            <h2 class="section__title">Luxury classics, refined.</h2>
+            <p class="section__sub">
+              A curated selection designed for depth, clarity, and elegance — from velvet espresso to luminous cold brew.
+            </p>
+          </header>
+
+          <div class="grid grid--3">
+            <article class="card glass reveal">
+              <div class="card__meta">
+                <span class="badge">Signature</span>
+                <span class="tag">Espresso</span>
+              </div>
+              <h3 class="card__title">Aurum Espresso</h3>
+              <p class="card__text">Syrupy body with cacao finish and a gold‑toned crema.</p>
+              <div class="card__row">
+                <span class="card__price">$9</span>
+                <button class="iconBtn" type="button" aria-label="Add Aurum Espresso" data-toast="Added: Aurum Espresso">
+                  +
+                </button>
+              </div>
+            </article>
+
+            <article class="card glass reveal">
+              <div class="card__meta">
+                <span class="badge badge--soft">Reserve</span>
+                <span class="tag">Pour‑Over</span>
+              </div>
+              <h3 class="card__title">Noir Pour‑Over</h3>
+              <p class="card__text">Single‑origin clarity with floral aromatics and silk finish.</p>
+              <div class="card__row">
+                <span class="card__price">$12</span>
+                <button class="iconBtn" type="button" aria-label="Add Noir Pour-Over" data-toast="Added: Noir Pour‑Over">
+                  +
+                </button>
+              </div>
+            </article>
+
+            <article class="card glass reveal">
+              <div class="card__meta">
+                <span class="badge">Classic</span>
+                <span class="tag">Milk</span>
+              </div>
+              <h3 class="card__title">Velvet Latte</h3>
+              <p class="card__text">Micro‑foam artistry with toasted sugar notes and warmth.</p>
+              <div class="card__row">
+                <span class="card__price">$10</span>
+                <button class="iconBtn" type="button" aria-label="Add Velvet Latte" data-toast="Added: Velvet Latte">
+                  +
+                </button>
+              </div>
+            </article>
+
+            <article class="card glass reveal">
+              <div class="card__meta">
+                <span class="badge badge--soft">Night</span>
+                <span class="tag">Cold</span>
+              </div>
+              <h3 class="card__title">Black‑Gold Cold Brew</h3>
+              <p class="card__text">Slow‑extracted, bright and clean with a gilded citrus lift.</p>
+              <div class="card__row">
+                <span class="card__price">$11</span>
+                <button class="iconBtn" type="button" aria-label="Add Black-Gold Cold Brew" data-toast="Added: Black‑Gold Cold Brew">
+                  +
+                </button>
+              </div>
+            </article>
+
+            <article class="card glass reveal">
+              <div class="card__meta">
+                <span class="badge">Pairing</span>
+                <span class="tag">Dessert</span>
+              </div>
+              <h3 class="card__title">Gold Affogato</h3>
+              <p class="card__text">Vanilla gelato crowned with espresso — decadent, balanced.</p>
+              <div class="card__row">
+                <span class="card__price">$14</span>
+                <button class="iconBtn" type="button" aria-label="Add Gold Affogato" data-toast="Added: Gold Affogato">
+                  +
+                </button>
+              </div>
+            </article>
+
+            <article class="card glass reveal">
+              <div class="card__meta">
+                <span class="badge badge--soft">Tasting</span>
+                <span class="tag">Flight</span>
+              </div>
+              <h3 class="card__title">Aurum Flight</h3>
+              <p class="card__text">Three pours, one ritual — guided notes from our bar lead.</p>
+              <div class="card__row">
+                <span class="card__price">$24</span>
+                <button class="iconBtn" type="button" aria-label="Add Aurum Flight" data-toast="Added: Aurum Flight">
+                  +
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="section" id="gallery" data-parallax="0.20">
+        <div class="container">
+          <header class="section__head reveal">
+            <p class="eyebrow">Gallery</p>
+            <h2 class="section__title">Light, shadow, crema.</h2>
+            <p class="section__sub">A premium coffee gallery — designed to feel editorial, not stock.</p>
+          </header>
+
+          <div class="gallery">
+            <a class="shot glass reveal" href="#reserve" aria-label="Open gallery item 1">
+              <span class="shot__img shot__img--1" aria-hidden="true"></span>
+              <span class="shot__cap">
+                <span class="shot__t">Noir Bar</span>
+                <span class="shot__s">ambient · gold accents</span>
+              </span>
+            </a>
+            <a class="shot glass reveal" href="#reserve" aria-label="Open gallery item 2">
+              <span class="shot__img shot__img--2" aria-hidden="true"></span>
+              <span class="shot__cap">
+                <span class="shot__t">Aurum Espresso</span>
+                <span class="shot__s">velvet crema · cacao</span>
+              </span>
+            </a>
+            <a class="shot glass reveal" href="#reserve" aria-label="Open gallery item 3">
+              <span class="shot__img shot__img--3" aria-hidden="true"></span>
+              <span class="shot__cap">
+                <span class="shot__t">Reserve Pour</span>
+                <span class="shot__s">clarity · floral finish</span>
+              </span>
+            </a>
+            <a class="shot glass reveal" href="#reserve" aria-label="Open gallery item 4">
+              <span class="shot__img shot__img--4" aria-hidden="true"></span>
+              <span class="shot__cap">
+                <span class="shot__t">Night Flight</span>
+                <span class="shot__s">tasting ritual · three pours</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--alt" id="craft" data-parallax="0.22">
+        <div class="container">
+          <div class="split">
+            <div class="split__left reveal">
+              <p class="eyebrow">Craft</p>
+              <h2 class="section__title">Precision is our luxury.</h2>
+              <p class="section__sub">
+                Every cup is calibrated: water chemistry, temperature curves, grind distribution, and extraction time —
+                tuned daily for a consistent, cinematic taste.
+              </p>
+
+              <div class="featureList">
+                <div class="feature glass reveal">
+                  <div class="feature__icon" aria-hidden="true">⟡</div>
+                  <div class="feature__body">
+                    <div class="feature__title">Single‑origin rotation</div>
+                    <div class="feature__text">Fresh profiles each week, sourced in limited lots.</div>
+                  </div>
+                </div>
+                <div class="feature glass reveal">
+                  <div class="feature__icon" aria-hidden="true">⟡</div>
+                  <div class="feature__body">
+                    <div class="feature__title">Bar‑led tasting ritual</div>
+                    <div class="feature__text">A guided, sensory experience — not just a drink.</div>
+                  </div>
+                </div>
+                <div class="feature glass reveal">
+                  <div class="feature__icon" aria-hidden="true">⟡</div>
+                  <div class="feature__body">
+                    <div class="feature__title">Gold‑standard finish</div>
+                    <div class="feature__text">Elegant plating and quiet, intimate ambience.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="split__right reveal" aria-hidden="true">
+              <div class="showcase glass">
+                <div class="showcase__cap">Extraction curve</div>
+                <div class="meter">
+                  <div class="meter__bar" style="--w: 78%"></div>
+                </div>
+                <div class="showcase__row">
+                  <span>Body</span><span class="gold">Silk</span>
+                </div>
+                <div class="meter">
+                  <div class="meter__bar" style="--w: 64%"></div>
+                </div>
+                <div class="showcase__row">
+                  <span>Acidity</span><span class="gold">Bright</span>
+                </div>
+                <div class="meter">
+                  <div class="meter__bar" style="--w: 71%"></div>
+                </div>
+                <div class="showcase__row">
+                  <span>Finish</span><span class="gold">Long</span>
+                </div>
+                <div class="showcase__note">
+                  Calibrated daily · served at the bar · reserve seating available
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="section" id="stats" data-parallax="0.18">
+        <div class="container">
+          <header class="section__head reveal">
+            <p class="eyebrow">Standards</p>
+            <h2 class="section__title">Measured luxury.</h2>
+            <p class="section__sub">Not marketing numbers — operational precision, tracked every day.</p>
+          </header>
+
+          <div class="statsGrid">
+            <div class="kpi glass reveal">
+              <div class="kpi__label">Dial‑in time</div>
+              <div class="kpi__value"><span class="count" data-count="14">0</span><span class="kpi__unit">min</span></div>
+              <div class="kpi__hint">morning calibration</div>
+            </div>
+            <div class="kpi glass reveal">
+              <div class="kpi__label">Avg. extraction</div>
+              <div class="kpi__value"><span class="count" data-count="29">0</span><span class="kpi__unit">s</span></div>
+              <div class="kpi__hint">espresso baseline</div>
+            </div>
+            <div class="kpi glass reveal">
+              <div class="kpi__label">Water softness</div>
+              <div class="kpi__value"><span class="count" data-count="85">0</span><span class="kpi__unit">ppm</span></div>
+              <div class="kpi__hint">target mineral profile</div>
+            </div>
+            <div class="kpi glass reveal">
+              <div class="kpi__label">Guest return</div>
+              <div class="kpi__value"><span class="count" data-count="62">0</span><span class="kpi__unit">%</span></div>
+              <div class="kpi__hint">monthly average</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="testimonials" data-parallax="0.16">
+        <div class="container">
+          <header class="section__head reveal">
+            <p class="eyebrow">Testimonials</p>
+            <h2 class="section__title">Loved by people with taste.</h2>
+            <p class="section__sub">Quiet luxury, loud flavor — here’s what guests say after the ritual.</p>
+          </header>
+
+          <!-- Слайдер отзывов: интерактивный блок для «портфолио»-ощущения -->
+          <section class="tSlider glass reveal" aria-label="Testimonials slider" data-slider>
+            <div class="tSlider__track" data-slider-track>
+              <figure class="tSlide" data-slide>
+                <blockquote class="quote__text">
+                  “The espresso felt like velvet — rich, precise, and impossibly clean.”
+                </blockquote>
+                <figcaption class="quote__who">
+                  <span class="quote__name">Elena R.</span>
+                  <span class="quote__role">Design Director</span>
+                </figcaption>
+              </figure>
+              <figure class="tSlide" data-slide>
+                <blockquote class="quote__text">
+                  “Cinematic atmosphere. The tasting flight is a must — it’s a full sensory experience.”
+                </blockquote>
+                <figcaption class="quote__who">
+                  <span class="quote__name">Marcus H.</span>
+                  <span class="quote__role">Sommelier</span>
+                </figcaption>
+              </figure>
+              <figure class="tSlide" data-slide>
+                <blockquote class="quote__text">
+                  “Everything is refined — from the aroma to the gold accents. Pure luxury.”
+                </blockquote>
+                <figcaption class="quote__who">
+                  <span class="quote__name">Aya K.</span>
+                  <span class="quote__role">Founder</span>
+                </figcaption>
+              </figure>
+              <figure class="tSlide" data-slide>
+                <blockquote class="quote__text">
+                  “A tasting room that respects silence — and delivers flavor like a finale.”
+                </blockquote>
+                <figcaption class="quote__who">
+                  <span class="quote__name">Noah S.</span>
+                  <span class="quote__role">Creative Producer</span>
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="tSlider__controls" aria-label="Slider controls">
+              <button class="iconBtn" type="button" data-slider-prev aria-label="Previous testimonial">←</button>
+              <div class="tDots" data-slider-dots aria-label="Testimonials pagination"></div>
+              <button class="iconBtn" type="button" data-slider-next aria-label="Next testimonial">→</button>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- RESERVATION -->
+      <section class="section section--cta" id="reserve" data-parallax="0.22">
+        <div class="container">
+          <div class="cta glass reveal">
+            <div class="cta__copy">
+              <p class="eyebrow">Reservation</p>
+              <h2 class="section__title">Reserve a tasting.</h2>
+              <p class="section__sub">
+                A premium reservation form — pick a time, select the ritual, and we’ll reply with an elegant confirmation.
+              </p>
+
+              <div class="contactMeta">
+                <div class="contactMeta__item">
+                  <span class="contactMeta__k">Hours</span>
+                  <span class="contactMeta__v">Daily · 8:00 — 22:00</span>
+                </div>
+                <div class="contactMeta__item">
+                  <span class="contactMeta__k">Location</span>
+                  <span class="contactMeta__v">Downtown Atelier</span>
+                </div>
+                <div class="contactMeta__item">
+                  <span class="contactMeta__k">Phone</span>
+                  <span class="contactMeta__v">+1 (555) 010‑020</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Форма резерва: UX аккуратный, с валидацией и премиум-ощущением -->
+            <form class="form" id="contact-form" novalidate>
+              <div class="form__row">
+                <label class="field">
+                  <span class="field__label">Name</span>
+                  <input class="field__input" name="name" type="text" autocomplete="name" required minlength="2" />
+                  <span class="field__error" aria-live="polite"></span>
+                </label>
+                <label class="field">
+                  <span class="field__label">Email</span>
+                  <input class="field__input" name="email" type="email" autocomplete="email" required />
+                  <span class="field__error" aria-live="polite"></span>
+                </label>
+              </div>
+
+              <div class="form__row">
+                <label class="field">
+                  <span class="field__label">Guests</span>
+                  <select class="field__input" name="guests" required>
+                    <option value="" selected disabled>Select</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4+</option>
+                  </select>
+                  <span class="field__error" aria-live="polite"></span>
+                </label>
+                <label class="field">
+                  <span class="field__label">Time</span>
+                  <input class="field__input" name="time" type="time" required />
+                  <span class="field__error" aria-live="polite"></span>
+                </label>
+              </div>
+
+              <div class="form__row">
+                <label class="field">
+                  <span class="field__label">Ritual</span>
+                  <select class="field__input" name="ritual" required>
+                    <option value="" selected disabled>Select</option>
+                    <option value="espresso">Espresso Ritual</option>
+                    <option value="flight">Aurum Flight</option>
+                    <option value="pour">Reserve Pour‑Over</option>
+                    <option value="dessert">Dessert Pairing</option>
+                  </select>
+                  <span class="field__error" aria-live="polite"></span>
+                </label>
+                <label class="field">
+                  <span class="field__label">Date</span>
+                  <input class="field__input" name="date" type="date" required />
+                  <span class="field__error" aria-live="polite"></span>
+                </label>
+              </div>
+
+              <label class="field">
+                <span class="field__label">Message</span>
+                <textarea
+                  class="field__input field__input--area"
+                  name="message"
+                  rows="4"
+                  placeholder="Tell us what you’re craving…"
+                  required
+                  minlength="8"
+                ></textarea>
+                <span class="field__error" aria-live="polite"></span>
+              </label>
+
+              <div class="form__actions">
+                <button class="btn btn--gold" type="submit">
+                  <span>Send request</span>
+                  <span class="btn__shine" aria-hidden="true"></span>
+                </button>
+                <p class="form__note">By sending, you agree to a tasteful inbox experience.</p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <div class="footer__left">
+          <div class="footer__brand">Aurum Noir</div>
+          <div class="footer__small">© <span id="year"></span> · All rights reserved.</div>
+        </div>
+        <div class="footer__right">
+          <a class="footer__link" href="#menu">Menu</a>
+          <a class="footer__link" href="#gallery">Gallery</a>
+          <a class="footer__link" href="#testimonials">Testimonials</a>
+          <a class="footer__link" href="#reserve">Reserve</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
