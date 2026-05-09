@@ -52,16 +52,21 @@
         </a>
 
         <nav class="nav" aria-label="Primary">
-          <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-panel">
-            <span class="nav__toggleIcon" aria-hidden="true"></span>
-            <span class="sr-only">Open menu</span>
-          </button>
+          <!-- Мобильная шапка: гамбургер + быстрый контакт -->
+          <div class="nav__actions">
+            <a class="nav__icon" href="#" aria-label="Telegram (demo)" data-toast="Telegram chat (demo)">TG</a>
+            <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-panel">
+              <span class="nav__toggleIcon" aria-hidden="true"></span>
+              <span class="sr-only">Open menu</span>
+            </button>
+          </div>
 
           <div class="nav__panel" id="nav-panel">
-            <a class="nav__link" href="#finder">Puppy Finder</a>
-            <a class="nav__link" href="#trust">Trust</a>
+            <a class="nav__link" href="#available">Available Puppies</a>
+            <a class="nav__link" href="#regions">How It Works</a>
             <a class="nav__link" href="#reviews">Reviews</a>
-            <a class="nav__link" href="#regions">Regions</a>
+            <a class="nav__link" href="#trust">Delivery</a>
+            <a class="nav__link" href="#contact">Contact</a>
             <a class="btn btn--primary btn--sm" href="#finder">Find My Puppy</a>
           </div>
         </nav>
@@ -70,93 +75,133 @@
 
     <main id="main">
       <!-- HERO -->
-      <section class="hero" id="top" data-parallax="0.18">
-        <div class="container hero__grid">
-          <div class="hero__copy">
-            <p class="eyebrow reveal">Warm. Trusted. Premium.</p>
-            <h1 class="hero__title reveal">Find Your Perfect Puppy Across Europe &amp; America</h1>
-            <p class="hero__lead reveal">Premium puppy matching, trusted breeders, safe worldwide delivery.</p>
+      <section class="heroCine" id="top" aria-label="Premium puppy concierge" data-hero>
+        <div class="heroCine__bg" aria-hidden="true">
+          <img
+            class="heroCine__bgImg"
+            src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=2600&q=80"
+            alt=""
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <div class="heroCine__bgVignette"></div>
+          <div class="heroCine__bgWarm"></div>
+          <canvas class="heroCine__dust" data-dust aria-hidden="true"></canvas>
+        </div>
 
-            <div class="hero__cta reveal">
+        <div class="heroCine__content">
+          <div class="container heroCine__stack">
+            <div class="heroCine__topline reveal">
+              <span class="heroBadge glass" aria-label="Premium concierge">Premium concierge</span>
+              <span class="heroBadge glass" aria-label="Europe and USA delivery">Europe &amp; USA delivery</span>
+              <span class="heroBadge glass" aria-label="Verified breeders only">Verified breeders only</span>
+            </div>
+
+            <header class="heroCine__headline">
+              <h1 class="heroCine__title reveal">Where Your Puppy Journey Begins</h1>
+              <p class="heroCine__sub reveal">
+                Premium puppy matching and safe worldwide delivery across Europe &amp; America.
+              </p>
+            </header>
+
+            <div class="heroSearch glass reveal" id="hero-search">
+              <form class="heroSearch__form" id="hero-search-form" autocomplete="off">
+                <label class="sr-only" for="hero-breed">Breed search</label>
+                <input
+                  class="heroSearch__input"
+                  id="hero-breed"
+                  name="q"
+                  type="search"
+                  placeholder="What puppy are you looking for?"
+                  aria-label="What puppy are you looking for?"
+                />
+                <button class="heroSearch__go" type="submit" aria-label="Search">
+                  <span aria-hidden="true">⌕</span>
+                </button>
+              </form>
+
+              <div class="heroSearch__filters" role="list" aria-label="Quick filters">
+                <button class="qf" type="button" data-qf="Small breeds" role="listitem">Small breeds</button>
+                <button class="qf" type="button" data-qf="Family dogs" role="listitem">Family dogs</button>
+                <button class="qf" type="button" data-qf="Hypoallergenic" role="listitem">Hypoallergenic</button>
+                <button class="qf" type="button" data-qf="Teacup puppies" role="listitem">Teacup puppies</button>
+                <button class="qf" type="button" data-qf="Ready for delivery" role="listitem">Ready for delivery</button>
+              </div>
+            </div>
+
+            <div class="heroCine__cta reveal">
               <a class="btn btn--primary" href="#finder">Find My Puppy</a>
-              <a class="btn btn--secondary" href="#available">Browse Available Puppies</a>
+              <a class="btn btn--secondary" href="#available">Browse Puppies</a>
             </div>
 
-            <!-- Быстрые обещания доверия (не «рынок объявлений») -->
-            <div class="hero__trustRow reveal" role="list" aria-label="Trust highlights">
-              <div class="mini glass" role="listitem">
-                <div class="mini__k">Verified</div>
-                <div class="mini__v">Breeders</div>
+            <div class="heroSocial reveal" aria-label="Social proof">
+              <div class="tp glass" aria-label="Trustpilot rating">
+                <div class="tp__k">Trustpilot</div>
+                <div class="tp__v">
+                  <span class="tp__stars" aria-hidden="true">★★★★★</span>
+                  <span class="tp__score">4.9</span>
+                </div>
+                <div class="tp__sub">Loved by 5,000+ families</div>
               </div>
-              <div class="mini glass" role="listitem">
-                <div class="mini__k">Safe</div>
-                <div class="mini__v">Delivery</div>
-              </div>
-              <div class="mini glass" role="listitem">
-                <div class="mini__k">Health</div>
-                <div class="mini__v">Certificates</div>
-              </div>
-            </div>
-          </div>
 
-          <div class="hero__visual reveal">
-            <!-- Эмоциональная фотография -->
-            <div class="heroPhoto glass">
-              <img
-                class="heroPhoto__img"
-                src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80"
-                alt="Happy puppy close-up"
-                loading="eager"
-                decoding="async"
-                fetchpriority="high"
-              />
-              <div class="heroPhoto__overlay" aria-hidden="true"></div>
+              <div class="avatars glass" aria-label="Happy families">
+                <div class="avatars__row" aria-hidden="true">
+                  <span class="av av--1"></span>
+                  <span class="av av--2"></span>
+                  <span class="av av--3"></span>
+                  <span class="av av--4"></span>
+                  <span class="av av--5"></span>
+                </div>
+                <div class="avatars__txt">Warm matches · calm delivery · real updates</div>
+              </div>
             </div>
 
-            <!-- Мягкие статистические виджеты (анимированные счетчики) -->
-            <div class="statWidget glass" role="group" aria-label="Service statistics">
-              <div class="statWidget__grid">
-                <div class="widget">
-                  <div class="widget__k">Working hours</div>
-                  <div class="widget__v">
-                    <span class="count" data-count="12">0</span><span class="widget__unit">/day</span>
-                  </div>
-                </div>
-                <div class="widget">
-                  <div class="widget__k">Puppies delivered</div>
-                  <div class="widget__v">
-                    <span class="count" data-count="1840">0</span><span class="widget__unit">+</span>
-                  </div>
-                </div>
-                <div class="widget">
-                  <div class="widget__k">Happy families</div>
-                  <div class="widget__v">
-                    <span class="count" data-count="1732">0</span><span class="widget__unit">+</span>
-                  </div>
-                </div>
-                <div class="widget">
-                  <div class="widget__k">Countries served</div>
-                  <div class="widget__v">
-                    <span class="count" data-count="27">0</span><span class="widget__unit"></span>
-                  </div>
-                </div>
-                <div class="widget">
-                  <div class="widget__k">Live support</div>
-                  <div class="widget__v">
-                    <span class="count" data-count="24">0</span><span class="widget__unit">/7</span>
-                  </div>
-                </div>
-              </div>
-              <div class="statWidget__glow" aria-hidden="true"></div>
+            <!-- Micro: subtle eye blink illusion layer (positioned over image) -->
+            <div class="heroEyes" aria-hidden="true">
+              <span class="eye eye--l"></span>
+              <span class="eye eye--r"></span>
             </div>
+
+            <!-- Floating concierge cards -->
+            <aside class="heroFloat heroFloat--a glass reveal" aria-label="Concierge highlight">
+              <div class="heroFloat__k">24/7</div>
+              <div class="heroFloat__v">Puppy Concierge</div>
+            </aside>
+            <aside class="heroFloat heroFloat--b glass reveal" aria-label="Delivery highlight">
+              <div class="heroFloat__k">White‑glove</div>
+              <div class="heroFloat__v">Worldwide Delivery</div>
+            </aside>
           </div>
         </div>
 
-        <div class="hero__scroll">
-          <a class="scrollHint" href="#finder" aria-label="Scroll to puppy finder">
+        <div class="heroCine__scroll">
+          <a class="scrollHint scrollHint--light" href="#hero-trust" aria-label="Scroll to trust">
             <span class="scrollHint__dot" aria-hidden="true"></span>
             <span class="scrollHint__text">Explore</span>
           </a>
+        </div>
+      </section>
+
+      <!-- TRUST STRIP прямо под HERO -->
+      <section class="heroTrust" id="hero-trust" aria-label="Trust highlights">
+        <div class="container heroTrust__grid">
+          <div class="trustPill glass reveal">
+            <div class="trustPill__k"><span class="count" data-count="2500">0</span>+</div>
+            <div class="trustPill__v">Puppies Delivered</div>
+          </div>
+          <div class="trustPill glass reveal">
+            <div class="trustPill__k"><span class="count" data-count="24">0</span>/7</div>
+            <div class="trustPill__v">Puppy Concierge</div>
+          </div>
+          <div class="trustPill glass reveal">
+            <div class="trustPill__k">Europe &amp; USA</div>
+            <div class="trustPill__v">Delivery Coverage</div>
+          </div>
+          <div class="trustPill glass reveal">
+            <div class="trustPill__k">Verified</div>
+            <div class="trustPill__v">Breeders Only</div>
+          </div>
         </div>
       </section>
 
@@ -345,7 +390,7 @@
       </section>
 
       <!-- REVIEWS -->
-      <section class="section" id="reviews" data-parallax="0.12">
+      <section class="section section--reviews" id="reviews" data-parallax="0.12">
         <div class="container">
           <header class="section__head reveal">
             <p class="eyebrow">Reviews</p>
@@ -376,6 +421,16 @@
                   />
                 </div>
                 <div class="rSlide__body">
+                  <div class="rSlide__mHead" aria-label="Reviewer">
+                    <div class="rSlide__avatar" aria-hidden="true"></div>
+                    <div class="rSlide__mWho">
+                      <div class="rSlide__mName">Amélie &amp; Laurent <span class="flag" aria-label="France">🇫🇷</span></div>
+                      <div class="rSlide__mBadges">
+                        <span class="badge badge--verified" aria-label="Verified review">Verified</span>
+                        <span class="pill pill--soft">Paris</span>
+                      </div>
+                    </div>
+                  </div>
                   <div class="rSlide__meta">
                     <span class="pill">Paris, France</span>
                     <span class="pill pill--soft">Delivered in 6 days</span>
@@ -402,6 +457,16 @@
                   />
                 </div>
                 <div class="rSlide__body">
+                  <div class="rSlide__mHead" aria-label="Reviewer">
+                    <div class="rSlide__avatar rSlide__avatar--us" aria-hidden="true"></div>
+                    <div class="rSlide__mWho">
+                      <div class="rSlide__mName">Brooke &amp; James <span class="flag" aria-label="United States">🇺🇸</span></div>
+                      <div class="rSlide__mBadges">
+                        <span class="badge badge--verified" aria-label="Verified review">Verified</span>
+                        <span class="pill pill--soft">Austin</span>
+                      </div>
+                    </div>
+                  </div>
                   <div class="rSlide__meta">
                     <span class="pill">Austin, USA</span>
                     <span class="pill pill--soft">White‑glove delivery</span>
@@ -428,6 +493,16 @@
                   />
                 </div>
                 <div class="rSlide__body">
+                  <div class="rSlide__mHead" aria-label="Reviewer">
+                    <div class="rSlide__avatar rSlide__avatar--de" aria-hidden="true"></div>
+                    <div class="rSlide__mWho">
+                      <div class="rSlide__mName">Mina <span class="flag" aria-label="Germany">🇩🇪</span></div>
+                      <div class="rSlide__mBadges">
+                        <span class="badge badge--verified" aria-label="Verified review">Verified</span>
+                        <span class="pill pill--soft">Berlin</span>
+                      </div>
+                    </div>
+                  </div>
                   <div class="rSlide__meta">
                     <span class="pill">Berlin, Germany</span>
                     <span class="pill pill--soft">Verified breeder</span>
@@ -600,6 +675,19 @@
       </a>
       <button class="floater floater--chat" type="button" aria-label="Live consultation" id="open-chat">
         Chat
+      </button>
+    </div>
+
+    <!-- Нижняя панель контактов для мобильных (не мешает, но всегда под рукой) -->
+    <div class="mobileBar" aria-label="Mobile contact bar">
+      <a class="mobileBar__btn mobileBar__btn--tg" href="#" aria-label="Telegram (demo)" data-toast="Telegram chat (demo)">
+        Telegram
+      </a>
+      <a class="mobileBar__btn mobileBar__btn--wa" href="#" aria-label="WhatsApp (demo)" data-toast="WhatsApp chat (demo)">
+        WhatsApp
+      </a>
+      <button class="mobileBar__btn mobileBar__btn--cta" type="button" id="mobile-consult">
+        Request Consultation
       </button>
     </div>
 

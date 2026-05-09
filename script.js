@@ -210,6 +210,214 @@ function setupGlassHoverGlow() {
   }
 }
 
+function setupHeroCine() {
+  const hero = $("[data-hero]");
+  if (!hero) return;
+
+  const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+
+  // Parallax (mouse + gentle mobile tilt)
+  let hx = 0;
+  let hy = 0;
+  let hz = 0;
+  let raf = 0;
+
+  const apply = () => {
+    raf = 0;
+    hero.style.setProperty("--hx", `${hx.toFixed(2)}px`);
+    hero.style.setProperty("--hy", `${hy.toFixed(2)}px`);
+    hero.style.setProperty("--hz", `${hz.toFixed(2)}`);
+    // Tiny eye follow illusion
+    hero.style.setProperty("--ex", `${(hx * 0.22).toFixed(2)}px`);
+    hero.style.setProperty("--ey", `${(hy * 0.18).toFixed(2)}px`);
+  };
+
+  const schedule = () => {
+    if (raf) return;
+    raf = requestAnimationFrame(apply);
+  };
+
+  if (!reduceMotion) {
+    hero.addEventListener(
+      "pointermove",
+      (e) => {
+        const r = hero.getBoundingClientRect();
+        const cx = r.left + r.width / 2;
+        const cy = r.top + r.height / 2;
+        const dx = (e.clientX - cx) / Math.max(320, r.width);
+        const dy = (e.clientY - cy) / Math.max(420, r.height);
+        hx = clamp(dx * 26, -26, 26);
+        hy = clamp(dy * 20, -20, 20);
+        hz = clamp(Math.abs(dx) * 36 + Math.abs(dy) * 28, 0, 60);
+        schedule();
+      },
+      { passive: true }
+    );
+
+    hero.addEventListener(
+      "pointerleave",
+      () => {
+        hx *= 0.2;
+        hy *= 0.2;
+        hz *= 0.2;
+        schedule();
+      },
+      { passive: true }
+    );
+
+    // Optional: very subtle device tilt on mobile
+    window.addEventListener(
+      "deviceorientation",
+      (e) => {
+        if (!("beta" in e) || !("gamma" in e)) return;
+        const dx = clamp((e.gamma || 0) / 30, -1, 1);
+        const dy = clamp((e.beta || 0) / 30, -1, 1);
+        hx = clamp(dx * 14, -14, 14);
+        hy = clamp(dy * 10, -10, 10);
+        hz = clamp(Math.abs(dx) * 26 + Math.abs(dy) * 22, 0, 50);
+        schedule();
+      },
+      { passive: true }
+    );
+  }
+
+  // Dust particles canvas
+  const canvas = $("[data-dust]", hero);
+  const ctx = canvas?.getContext?.("2d");
+  if (canvas && ctx && !reduceMotion) {
+    const DPR = () => clamp(window.devicePixelRatio || 1, 1, 2);
+    let w = 0;
+    let h = 0;
+    let dpr = DPR();
+    let particles = [];
+    let animId = 0;
+
+    const resize = () => {
+      dpr = DPR();
+      w = Math.max(320, hero.clientWidth);
+      h = Math.max(320, hero.clientHeight);
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const targetN = Math.round(clamp((w * h) / 28000, 26, 70));
+      if (particles.length < targetN) {
+        for (let i = particles.length; i < targetN; i++) {
+          particles.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            r: 0.6 + Math.random() * 2.2,
+            a: 0.04 + Math.random() * 0.12,
+            vx: -0.14 + Math.random() * 0.28,
+            vy: -0.12 + Math.random() * 0.24,
+            tw: Math.random() * Math.PI * 2,
+          });
+        }
+      } else if (particles.length > targetN) {
+        particles = particles.slice(0, targetN);
+      }
+    };
+
+    const tick = () => {
+      animId = requestAnimationFrame(tick);
+      ctx.clearRect(0, 0, w, h);
+      ctx.globalCompositeOperation = "lighter";
+
+      const px = hx * 0.35;
+      const py = hy * 0.35;
+
+      for (const p of particles) {
+        p.tw += 0.015 + p.r * 0.0015;
+        const twinkle = (Math.sin(p.tw) + 1) / 2;
+        const alpha = p.a * (0.55 + twinkle * 0.9);
+
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < -20) p.x = w + 20;
+        if (p.x > w + 20) p.x = -20;
+        if (p.y < -20) p.y = h + 20;
+        if (p.y > h + 20) p.y = -20;
+
+        const x = p.x + px;
+        const y = p.y + py;
+        const grd = ctx.createRadialGradient(x, y, 0, x, y, p.r * 10);
+        grd.addColorStop(0, `rgba(250,248,245,${alpha})`);
+        grd.addColorStop(0.35, `rgba(250,248,245,${alpha * 0.35})`);
+        grd.addColorStop(1, "rgba(250,248,245,0)");
+        ctx.fillStyle = grd;
+        ctx.beginPath();
+        ctx.arc(x, y, p.r * 10, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.globalCompositeOperation = "source-over";
+    };
+
+    resize();
+    tick();
+    window.addEventListener("resize", resize, { passive: true });
+    document.addEventListener(
+      "visibilitychange",
+      () => {
+        if (document.hidden) {
+          cancelAnimationFrame(animId);
+        } else {
+          cancelAnimationFrame(animId);
+          tick();
+        }
+      },
+      { passive: true }
+    );
+  }
+
+  // Hero search → Finder handoff
+  const form = $("#hero-search-form");
+  const input = $("#hero-breed");
+  const qf = $$(".qf[data-qf]");
+  const finder = $("#finder");
+  const breedSel = $("#breed");
+  if (form && input && finder) {
+    const chooseBreed = (qRaw) => {
+      const q = (qRaw || "").trim().toLowerCase();
+      if (!q || !breedSel) return false;
+      const options = [...breedSel.options];
+      // Exact
+      let best = options.find((o) => o.value.toLowerCase() === q || o.textContent.toLowerCase() === q);
+      // Contains
+      if (!best) best = options.find((o) => o.value.toLowerCase().includes(q) || o.textContent.toLowerCase().includes(q));
+      // Word match
+      if (!best) {
+        const tokens = q.split(/\s+/).filter(Boolean);
+        best = options.find((o) => tokens.some((t) => o.textContent.toLowerCase().includes(t)));
+      }
+      if (!best || best.value === "any") return false;
+      breedSel.value = best.value;
+      breedSel.dispatchEvent(new Event("change", { bubbles: true }));
+      return true;
+    };
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const ok = chooseBreed(input.value);
+      finder.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      if (input.value.trim() && !ok) showToast("We’ll curate the closest match");
+      else showToast("Showing curated matches");
+    });
+
+    qf.forEach((b) => {
+      b.addEventListener("click", () => {
+        qf.forEach((x) => (x.dataset.on = "false"));
+        b.dataset.on = "true";
+        const v = b.getAttribute("data-qf") || "";
+        input.value = v;
+        showToast("Filter applied");
+      });
+    });
+  }
+}
+
 function animateCount(el, to, ms = 900) {
   const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
   if (reduceMotion) {
@@ -344,6 +552,18 @@ function setupFooterMiniForm() {
 
 function setupChatWidget() {
   const btn = $("#open-chat");
+  const dlg = $("#chat");
+  if (!btn || !dlg) return;
+
+  btn.addEventListener("click", () => {
+    if (typeof dlg.showModal === "function") dlg.showModal();
+    else showToast("Chat widget not supported (demo)");
+  });
+}
+
+function setupMobileConsultButton() {
+  // Мобильная кнопка «Request Consultation» должна открывать тот же диалог, что и плавающая кнопка Chat
+  const btn = $("#mobile-consult");
   const dlg = $("#chat");
   if (!btn || !dlg) return;
 
@@ -735,9 +955,11 @@ setupParallax();
 setupGlassHoverGlow();
 setupSmoothAnchorFocus();
 setupCounters();
+setupHeroCine();
 setupSliders();
 setupFinder();
 setupChatWidget();
+setupMobileConsultButton();
 setupChatDialogCloseToast();
 setupForm("reserve-form", "Request sent");
 setupFooterMiniForm();
