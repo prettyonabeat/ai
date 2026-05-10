@@ -372,22 +372,30 @@ img,svg,video,canvas{max-width:100%}
   z-index:-2;
   transform: translateZ(0);
 }
-.heroCine__bgImg{
-  width:100%; height:100%;
-  object-fit:cover;
-  object-position:center center;
-  display:block;
+.heroCine__rotator,
+.heroCine__slide{
+  position:absolute;
+  inset:0;
+}
+.heroCine__rotator{
+  overflow:hidden;
+  background: #1d1b18;
+}
+.heroCine__slide{
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  opacity:0;
   filter: saturate(1.04) contrast(1.05);
   transform: scale(calc(1.08 + (var(--hz, 0) * 0.0002))) translate3d(var(--hx, 0px), var(--hy, 0px), 0);
-  transition: transform .16s linear;
-  will-change: transform;
+  transition: opacity 1.5s ease, transform .16s linear;
+  will-change: opacity, transform;
   animation: heroZoom 18s var(--ease) infinite alternate;
 }
+.heroCine__slide.is-active{opacity:1}
 
 @media (max-width: 767px) {
-  .heroCine__bgImg{
-    object-position:50% 32%;
-  }
+  .heroCine__slide{background-position:50% 32%}
 }
 @keyframes heroZoom{
   0%{transform: scale(1.08) translate3d(var(--hx, 0px), var(--hy, 0px), 0)}
@@ -396,18 +404,18 @@ img,svg,video,canvas{max-width:100%}
 .heroCine__bgVignette{
   position:absolute; inset:0;
   background:
-    radial-gradient(900px 520px at 50% 30%, rgba(29,27,24,.05), transparent 62%),
-    radial-gradient(900px 680px at 50% 108%, rgba(29,27,24,.38), transparent 68%),
-    linear-gradient(180deg, rgba(29,27,24,.52), rgba(29,27,24,.10) 40%, rgba(29,27,24,.62));
-  opacity:.50;
+    radial-gradient(900px 520px at 50% 30%, rgba(29,27,24,.10), transparent 62%),
+    radial-gradient(900px 680px at 50% 108%, rgba(29,27,24,.46), transparent 68%),
+    linear-gradient(180deg, rgba(29,27,24,.62), rgba(29,27,24,.18) 40%, rgba(29,27,24,.70));
+  opacity:.62;
   pointer-events:none;
 }
 .heroCine__bgWarm{
   position:absolute; inset:0;
   background: radial-gradient(900px 520px at 22% 18%, rgba(250,248,245,.18), transparent 62%),
     linear-gradient(180deg, var(--hero-warm), rgba(250,248,245,0.02) 40%, rgba(250,248,245,0.12));
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2.5px);
+  -webkit-backdrop-filter: blur(2.5px);
   pointer-events:none;
 }
 .heroCine__dust{
@@ -1569,7 +1577,7 @@ img,svg,video,canvas{max-width:100%}
   .heroTrust__grid{grid-template-columns: 1fr 1fr}
 
   /* Mobile hero: keep the puppy face framed */
-  .heroCine__bgImg{object-position: 50% 28%;}
+  .heroCine__slide{background-position: 50% 28%;}
 
   /* Mobile finder: stack fields into one column */
   .finder{grid-template-columns: 1fr}

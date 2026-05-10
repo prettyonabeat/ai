@@ -210,11 +210,58 @@ function setupGlassHoverGlow() {
   }
 }
 
+function setupHeroBackgroundRotation(hero, reduceMotion) {
+  const rotator = $("[data-hero-rotator]", hero);
+  const slides = $$("[data-hero-slide]", rotator);
+  const images = (rotator?.dataset.images || "")
+    .split(",")
+    .map((src) => src.trim())
+    .filter(Boolean);
+
+  if (!rotator || slides.length < 2 || images.length < 2) return;
+
+  let activeLayer = 0;
+  let activeIndex = Math.floor(Math.random() * images.length);
+  slides[activeLayer].style.backgroundImage = `url("${images[activeIndex]}")`;
+  slides[activeLayer].classList.add("is-active");
+  slides[1 - activeLayer].classList.remove("is-active");
+
+  const preloadImage = (src) => {
+    const img = new Image();
+    img.decoding = "async";
+    img.src = src;
+  };
+
+  preloadImage(images[(activeIndex + 1) % images.length]);
+  const preloadRest = () => {
+    for (const src of images) preloadImage(src);
+  };
+
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(preloadRest, { timeout: 3000 });
+  } else {
+    window.addEventListener("load", preloadRest, { once: true });
+  }
+
+  if (reduceMotion) return;
+
+  window.setInterval(() => {
+    const nextIndex = (activeIndex + 1) % images.length;
+    const nextLayer = 1 - activeLayer;
+    slides[nextLayer].style.backgroundImage = `url("${images[nextIndex]}")`;
+    slides[nextLayer].classList.add("is-active");
+    slides[activeLayer].classList.remove("is-active");
+    activeLayer = nextLayer;
+    activeIndex = nextIndex;
+  }, 7000);
+}
+
 function setupHeroCine() {
   const hero = $("[data-hero]");
   if (!hero) return;
 
   const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+  setupHeroBackgroundRotation(hero, reduceMotion);
 
   // Parallax (mouse + gentle mobile tilt)
   let hx = 0;

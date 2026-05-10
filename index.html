@@ -80,19 +80,14 @@
       <!-- HERO -->
       <section class="heroCine" id="top" aria-label="Premium puppy concierge" data-hero>
         <div class="heroCine__bg" aria-hidden="true">
-          <picture>
-            <source srcset="images/backend.png" media="(min-width: 1024px)">
-            <source srcset="images/backend.png" media="(max-width: 1023px)">
-            <img
-              class="heroCine__bgImg"
-              src="images/backend.png"
-              alt="Premium puppy concierge background"
-              loading="eager"
-              decoding="async"
-              fetchpriority="high"
-              sizes="100vw"
-            />
-          </picture>
+          <div
+            class="heroCine__rotator"
+            data-hero-rotator
+            data-images="/images/hero/hero-1.jpg,/images/hero/hero-2.jpg,/images/hero/hero-3.jpg,/images/hero/hero-4.jpg"
+          >
+            <div class="heroCine__slide is-active" data-hero-slide style="background-image:url('/images/hero/hero-1.jpg')"></div>
+            <div class="heroCine__slide" data-hero-slide></div>
+          </div>
           <div class="heroCine__bgVignette"></div>
           <div class="heroCine__bgWarm"></div>
           <canvas class="heroCine__dust" data-dust aria-hidden="true"></canvas>
