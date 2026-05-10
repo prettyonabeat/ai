@@ -1,5 +1,5 @@
 :root{
-  /* Палитра из ТЗ */
+  /* Project palette */
   --warm-white:#FAF8F5;
   --cream:#F5EFE7;
   --beige:#EADFD3;
@@ -64,7 +64,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 }
 .skip-link:focus{transform: translateY(0)}
 
-/* Фоновая сцена */
+/* Background scene */
 .bg{position:fixed; inset:0; pointer-events:none; z-index:-1}
 .bg__glow{
   position:absolute;
@@ -691,7 +691,7 @@ button,input,select,textarea{font:inherit;color:inherit}
   color: rgba(29,27,24,.62);
 }
 
-/* Нижняя панель для мобильных */
+/* Mobile bottom bar */
 .mobileBar{
   position:fixed;
   left: 10px;
@@ -1346,7 +1346,7 @@ button,input,select,textarea{font:inherit;color:inherit}
   filter: blur(0);
 }
 
-/* Параллакс на секциях */
+/* Section parallax */
 [data-parallax]{position:relative}
 [data-parallax]::before{
   content:"";
@@ -1402,13 +1402,13 @@ button,input,select,textarea{font:inherit;color:inherit}
   .heroEyes{display:none}
   .heroTrust__grid{grid-template-columns: 1fr 1fr}
 
-  /* Мобильный hero: держим мордочку в кадре */
+  /* Mobile hero: keep the puppy face framed */
   .heroCine__bgImg{object-position: 50% 28%;}
 
-  /* Finder на мобильном: поля в одну колонку */
+  /* Mobile finder: stack fields into one column */
   .finder__grid{grid-template-columns: 1fr}
 
-  /* Нижняя панель + отступ от контента, чтобы она не перекрывала */
+  /* Bottom bar spacing so it does not cover content */
   .mobileBar{display:grid}
   body{padding-bottom: 98px}
   .floaters{display:none}
@@ -1418,7 +1418,7 @@ button,input,select,textarea{font:inherit;color:inherit}
   .rSlide{grid-template-columns: 1fr}
   .rSlide__media{height: 220px}
   
-  /* Отзывы на мобильных: аватар + флаг + verified, без визуального шума */
+  /* Mobile reviews: avatar, flag, and verified state without visual noise */
   .section--reviews{
     background:
       radial-gradient(900px 520px at 18% 10%, rgba(200,182,166,.22), transparent 62%),
@@ -1475,7 +1475,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media (max-width: 420px){
   .heroSearch{border-radius: 28px}
   .heroSearch__filters{justify-content:flex-start}
-  /* Trust: горизонтальный свайп-ряд, выглядит «дорого» и компактно */
+  /* Trust: compact horizontal swipe row */
   .heroTrust__grid{
     grid-template-columns: none;
     display:flex;
@@ -1499,4 +1499,3 @@ button,input,select,textarea{font:inherit;color:inherit}
   .btn__spark{display:none}
   .scrollHint__dot{animation:none}
 }
-

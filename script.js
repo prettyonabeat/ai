@@ -39,7 +39,7 @@ function setupNav() {
   const isOpen = () => nav.dataset.open === "true";
   setOpen(false);
 
-  // Элегантное мобильное меню: toggle + закрытие по клику снаружи / ESC
+  // Elegant mobile menu: toggle plus outside click and ESC close.
   toggle.addEventListener("click", () => setOpen(!isOpen()));
   panel.addEventListener("click", (e) => {
     const a = e.target.closest?.("a");
@@ -91,7 +91,7 @@ function setupLoader() {
     return;
   }
 
-  // На время загрузки фиксируем скролл, чтобы вход был «ровным»
+  // Lock scroll during loading so the entry feels stable.
   document.body.style.overflow = "hidden";
 
   const hide = () => {
@@ -137,7 +137,7 @@ function setupReveal() {
 }
 
 function setupSmoothAnchorFocus() {
-  // После плавного скролла переносим фокус (доступность)
+  // Move focus after smooth scrolling for accessibility.
   $$('a[href^="#"]').forEach((a) => {
     a.addEventListener("click", () => {
       const id = a.getAttribute("href")?.slice(1);
@@ -372,7 +372,7 @@ function setupHeroCine() {
     );
   }
 
-  // Hero search → Finder handoff
+  // Hero search -> Finder handoff
   const form = $("#hero-search-form");
   const input = $("#hero-breed");
   const qf = $$(".qf[data-qf]");
@@ -402,7 +402,7 @@ function setupHeroCine() {
       e.preventDefault();
       const ok = chooseBreed(input.value);
       finder.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
-      if (input.value.trim() && !ok) showToast("We’ll curate the closest match");
+      if (input.value.trim() && !ok) showToast("We'll curate the closest match");
       else showToast("Showing curated matches");
     });
 
@@ -484,7 +484,7 @@ function setupForm(formId, sentMessage) {
 
   const validateAll = () => fields.every((f) => validateField(f));
 
-  // Мягкая валидация по blur + повторная при вводе, если поле уже подсвечено
+  // Validate gently on blur, then revalidate while typing after a field is highlighted.
   inputs.forEach((input) => {
     input.addEventListener("input", () => {
       const field = input.closest(".field");
@@ -511,7 +511,7 @@ function setupForm(formId, sentMessage) {
       submit.style.opacity = "0.9";
     }
 
-    // Имитируем «премиум отправку» — как будто мы действительно создаем заявку у консьержа
+    // Simulate a premium submission as if a concierge request was created.
     await new Promise((r) => setTimeout(r, 850));
     form.reset();
     fields.forEach((f) => {
@@ -546,7 +546,7 @@ function setupFooterMiniForm() {
     await new Promise((r) => setTimeout(r, 650));
     form.reset();
     if (btn) btn.disabled = false;
-    showToast("We’ll reach out shortly");
+    showToast("We'll reach out shortly");
   });
 }
 
@@ -562,7 +562,7 @@ function setupChatWidget() {
 }
 
 function setupMobileConsultButton() {
-  // Мобильная кнопка «Request Consultation» должна открывать тот же диалог, что и плавающая кнопка Chat
+  // The mobile consultation button opens the same dialog as the floating Chat button.
   const btn = $("#mobile-consult");
   const dlg = $("#chat");
   if (!btn || !dlg) return;
@@ -571,6 +571,65 @@ function setupMobileConsultButton() {
     if (typeof dlg.showModal === "function") dlg.showModal();
     else showToast("Chat widget not supported (demo)");
   });
+}
+
+function escapeHTML(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function setupTestimonials() {
+  const track = $("[data-slider-track]");
+  const testimonials = typeof TESTIMONIALS !== "undefined" ? TESTIMONIALS : [];
+  if (!track || !Array.isArray(testimonials)) return;
+
+  const flags = {
+    France: "FR",
+    USA: "US",
+    Germany: "DE",
+  };
+
+  track.innerHTML = testimonials
+    .map((item) => {
+      const city = String(item.location || "").split(",")[0] || item.country || "Client";
+      const flag = flags[item.country] || item.country || "";
+
+      return `
+        <article class="rSlide" data-slide>
+          <div class="rSlide__media">
+            <img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.clientName)} with their puppy" loading="lazy" />
+          </div>
+          <div class="rSlide__body">
+            <div class="rSlide__mHead" aria-label="Reviewer">
+              <div class="rSlide__avatar" aria-hidden="true"></div>
+              <div class="rSlide__mWho">
+                <div class="rSlide__mName">${escapeHTML(item.clientName)} <span class="flag" aria-label="${escapeHTML(item.country)}">${escapeHTML(flag)}</span></div>
+                <div class="rSlide__mBadges">
+                  ${item.verified ? '<span class="badge badge--verified" aria-label="Verified review">Verified</span>' : ""}
+                  <span class="pill pill--soft">${escapeHTML(city)}</span>
+                </div>
+              </div>
+            </div>
+            <div class="rSlide__meta">
+              <span class="pill">${escapeHTML(item.location)}</span>
+              <span class="pill pill--soft">${escapeHTML(item.deliveryTime)}</span>
+            </div>
+            <h3 class="rSlide__title">"${escapeHTML(item.title)}"</h3>
+            <p class="rSlide__text">${escapeHTML(item.text)}</p>
+            <div class="rSlide__who">
+              <span class="rSlide__name">${escapeHTML(item.clientName)}</span>
+              <span class="rSlide__sep">·</span>
+              <span class="rSlide__note">${escapeHTML(item.clientType)}</span>
+            </div>
+          </div>
+        </article>
+      `;
+    })
+    .join("");
 }
 
 function createSlider(root) {
@@ -611,7 +670,7 @@ function createSlider(root) {
   prev?.addEventListener("click", () => scrollToIndex(i - 1));
   next?.addEventListener("click", () => scrollToIndex(i + 1));
 
-  // Автоплей: только если пользователь не взаимодействует
+  // Autoplay only while the user is not interacting.
   const startAutoplay = () => {
     if (reduceMotion) return;
     stopAutoplay();
@@ -625,7 +684,7 @@ function createSlider(root) {
   root.addEventListener("pointerenter", stopAutoplay);
   root.addEventListener("pointerleave", startAutoplay);
 
-  // Свайп/перетаскивание (простая реализация)
+  // Swipe and drag support.
   let downX = 0;
   let downLeft = 0;
   let isDown = false;
@@ -644,7 +703,7 @@ function createSlider(root) {
   const end = () => {
     if (!isDown) return;
     isDown = false;
-    // Подсчёт текущего слайда по ближайшему offsetLeft
+    // Pick the current slide by the nearest offsetLeft.
     const left = track.scrollLeft;
     let best = 0;
     let bestDist = Infinity;
@@ -661,7 +720,7 @@ function createSlider(root) {
   track.addEventListener("pointerup", end);
   track.addEventListener("pointercancel", end);
 
-  // Держим индекс в синхронизации при нативном скролле
+  // Keep the index in sync during native scrolling.
   let scrollRaf = 0;
   track.addEventListener(
     "scroll",
@@ -700,11 +759,11 @@ function uniq(arr) {
   return [...new Set(arr)];
 }
 
-// Генерирует ссылку на Telegram с префаззыполненным сообщением о щенке
+// Builds a Telegram link with a prefilled puppy inquiry.
 function generateTelegramLink(puppy) {
   const message = `Hello! I'm interested in ${puppy.name}, ${puppy.breed}, ${puppy.age}, price ${puppy.price}. Please contact me.`;
   const encodedMessage = encodeURIComponent(message);
-  return `https://t.me/pomeranian_mini_mishki?text=${encodedMessage}`;
+  return `https://t.me/Pomeranianpuppies_mini_mishki?text=${encodedMessage}`;
 }
 
 function setupFinder() {
@@ -724,7 +783,7 @@ function setupFinder() {
   const traitsWrap = $("#traits");
   if (!breedSel || !genderSel || !countrySel || !sizeSel || !budget || !budgetLabel || !traitsWrap) return;
 
-  // Заполняем селекты из набора данных
+  // Populate selects from the data set.
   uniq(PUPPIES.map((p) => p.breed)).sort().forEach((b) => {
     const o = document.createElement("option");
     o.value = b;
@@ -743,7 +802,7 @@ function setupFinder() {
 
   const setBudgetLabel = () => {
     const v = Number(budget.value) || 0;
-    budgetLabel.textContent = `$2,000 — $${fmtInt(v)}`;
+    budgetLabel.textContent = `$2,000 - $${fmtInt(v)}`;
   };
   setBudgetLabel();
   budget.addEventListener("input", () => {
@@ -789,7 +848,7 @@ function setupFinder() {
     const priceValue = Number(String(p.price).replace(/[^\d]/g, "")) || 0;
     if (priceValue > f.budget) return false;
     if (f.traits.length) {
-      // Все выбранные traits должны встречаться в карточке (строже, но «консьерж» ощущение)
+      // All selected traits must be present to keep matches curated.
       for (const t of f.traits) if (!p.traits.includes(t)) return false;
     }
     return true;
@@ -839,18 +898,18 @@ function setupFinder() {
 
     sub.textContent =
       matched.length === 0
-        ? "No exact matches — try widening budget or removing a trait."
+        ? "No exact matches - try widening budget or removing a trait."
         : "Curated puppies ready for safe delivery.";
 
     results.innerHTML = "";
     if (!matched.length) {
-      results.innerHTML = `<div class="sectionMini__note">No exact matches — try widening budget or removing a trait.</div>`;
+      results.innerHTML = `<div class="sectionMini__note">No exact matches - try widening budget or removing a trait.</div>`;
     } else {
       matched.forEach((p) => results.appendChild(renderCard(p)));
     }
   };
 
-  // Мгновенные обновления (не только по submit)
+  // Update instantly, not only on submit.
   [breedSel, genderSel, countrySel, sizeSel].forEach((el) =>
     el.addEventListener("change", () => render())
   );
@@ -896,6 +955,7 @@ setupGlassHoverGlow();
 setupSmoothAnchorFocus();
 setupCounters();
 setupHeroCine();
+setupTestimonials();
 setupSliders();
 setupFinder();
 setupChatWidget();
@@ -903,4 +963,3 @@ setupMobileConsultButton();
 setupChatDialogCloseToast();
 setupForm("reserve-form", "Request sent");
 setupFooterMiniForm();
-

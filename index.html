@@ -10,7 +10,7 @@
     />
     <title>PawCierge — Premium Puppy Matching & Delivery</title>
 
-    <!-- Шрифты: элегантный дисплей + нейтральный санс для Apple-like ощущения -->
+    <!-- Fonts: elegant display serif and neutral sans for an Apple-like feel -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,10 +21,10 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <!-- Skip-link для доступности (клавиатура/скринридеры) -->
+    <!-- Skip link for keyboard and screen reader accessibility -->
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Прелоадер: мягкий премиум вход без «дёрганий» верстки -->
+    <!-- Preloader: soft premium entry without layout jumps -->
     <div class="loader" id="loader" aria-hidden="true">
       <div class="loader__card">
         <div class="loader__mark" aria-hidden="true">PC</div>
@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <!-- Фон: теплый белый + пастельные свечения -->
+    <!-- Background: warm white with pastel glows -->
     <div class="bg" aria-hidden="true">
       <div class="bg__glow bg__glow--a"></div>
       <div class="bg__glow bg__glow--b"></div>
@@ -52,7 +52,7 @@
         </a>
 
         <nav class="nav" aria-label="Primary">
-          <!-- Мобильная шапка: гамбургер + быстрый контакт -->
+          <!-- Mobile header: menu toggle and quick contact -->
           <div class="nav__actions">
             <a class="nav__icon" href="https://t.me/Pomeranianpuppies_mini_mishki" target="_blank" rel="noopener noreferrer" aria-label="Telegram" data-toast="Opening Telegram chat...">TG</a>
             <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-panel">
@@ -188,7 +188,7 @@
         </div>
       </section>
 
-      <!-- TRUST STRIP прямо под HERO -->
+      <!-- TRUST STRIP below HERO -->
       <section class="heroTrust" id="hero-trust" aria-label="Trust highlights">
         <div class="container heroTrust__grid">
           <div class="trustPill glass reveal">
@@ -400,10 +400,10 @@
           <header class="section__head reveal">
             <p class="eyebrow">Reviews</p>
             <h2 class="section__title">Families, reunited with joy.</h2>
-            <p class="section__sub">Real delivery stories from Europe and the USA — verified and heartfelt.</p>
+            <p class="section__sub">Real delivery stories from Europe and the USA - verified and heartfelt.</p>
           </header>
 
-          <!-- Слайдер отзывов: карточки + фото + verified badge -->
+          <!-- Reviews slider: cards, photos, and verified badges -->
           <section class="rSlider glass reveal" aria-label="Testimonials slider" data-slider>
             <div class="rSlider__top">
               <div class="rSlider__hint">
@@ -411,119 +411,13 @@
                 <span class="rSlider__hintText">Delivery success stories</span>
               </div>
               <div class="rSlider__arrows">
-                <button class="iconBtn" type="button" data-slider-prev aria-label="Previous review">←</button>
-                <button class="iconBtn" type="button" data-slider-next aria-label="Next review">→</button>
+                <button class="iconBtn" type="button" data-slider-prev aria-label="Previous review">&larr;</button>
+                <button class="iconBtn" type="button" data-slider-next aria-label="Next review">&rarr;</button>
               </div>
             </div>
 
             <div class="rSlider__track" data-slider-track>
-              <article class="rSlide" data-slide>
-                <div class="rSlide__media">
-                  <img
-                    src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80"
-                    alt="Happy family with their puppy"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="rSlide__body">
-                  <div class="rSlide__mHead" aria-label="Reviewer">
-                    <div class="rSlide__avatar" aria-hidden="true"></div>
-                    <div class="rSlide__mWho">
-                      <div class="rSlide__mName">Amélie &amp; Laurent <span class="flag" aria-label="France">🇫🇷</span></div>
-                      <div class="rSlide__mBadges">
-                        <span class="badge badge--verified" aria-label="Verified review">Verified</span>
-                        <span class="pill pill--soft">Paris</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="rSlide__meta">
-                    <span class="pill">Paris, France</span>
-                    <span class="pill pill--soft">Delivered in 6 days</span>
-                  </div>
-                  <h3 class="rSlide__title">“The calmest experience we could imagine.”</h3>
-                  <p class="rSlide__text">
-                    We were nervous about international delivery — PawCierge handled everything: vet checks, paperwork,
-                    and gentle handoff. Our puppy arrived calm, clean, and loved.
-                  </p>
-                  <div class="rSlide__who">
-                    <span class="rSlide__name">Amélie &amp; Laurent</span>
-                    <span class="rSlide__sep">·</span>
-                    <span class="rSlide__note">EU client</span>
-                  </div>
-                </div>
-              </article>
-
-              <article class="rSlide" data-slide>
-                <div class="rSlide__media">
-                  <img
-                    src="https://images.unsplash.com/photo-1524503033411-fae9f86fc3d8?auto=format&fit=crop&w=1200&q=80"
-                    alt="Smiling couple holding a puppy"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="rSlide__body">
-                  <div class="rSlide__mHead" aria-label="Reviewer">
-                    <div class="rSlide__avatar rSlide__avatar--us" aria-hidden="true"></div>
-                    <div class="rSlide__mWho">
-                      <div class="rSlide__mName">Brooke &amp; James <span class="flag" aria-label="United States">🇺🇸</span></div>
-                      <div class="rSlide__mBadges">
-                        <span class="badge badge--verified" aria-label="Verified review">Verified</span>
-                        <span class="pill pill--soft">Austin</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="rSlide__meta">
-                    <span class="pill">Austin, USA</span>
-                    <span class="pill pill--soft">White‑glove delivery</span>
-                  </div>
-                  <h3 class="rSlide__title">“It felt like a concierge, not a purchase.”</h3>
-                  <p class="rSlide__text">
-                    The matching questions were thoughtful. We got videos, health records, and updates at every step.
-                    Our puppy’s temperament matches our family perfectly.
-                  </p>
-                  <div class="rSlide__who">
-                    <span class="rSlide__name">Brooke &amp; James</span>
-                    <span class="rSlide__sep">·</span>
-                    <span class="rSlide__note">USA client</span>
-                  </div>
-                </div>
-              </article>
-
-              <article class="rSlide" data-slide>
-                <div class="rSlide__media">
-                  <img
-                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1200&q=80"
-                    alt="Happy family portrait"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="rSlide__body">
-                  <div class="rSlide__mHead" aria-label="Reviewer">
-                    <div class="rSlide__avatar rSlide__avatar--de" aria-hidden="true"></div>
-                    <div class="rSlide__mWho">
-                      <div class="rSlide__mName">Mina <span class="flag" aria-label="Germany">🇩🇪</span></div>
-                      <div class="rSlide__mBadges">
-                        <span class="badge badge--verified" aria-label="Verified review">Verified</span>
-                        <span class="pill pill--soft">Berlin</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="rSlide__meta">
-                    <span class="pill">Berlin, Germany</span>
-                    <span class="pill pill--soft">Verified breeder</span>
-                  </div>
-                  <h3 class="rSlide__title">“Transparent, warm, and professional.”</h3>
-                  <p class="rSlide__text">
-                    We loved the breeder verification and the health documentation. The team was kind, patient, and quick
-                    to answer. Our puppy arrived with a calm routine already started.
-                  </p>
-                  <div class="rSlide__who">
-                    <span class="rSlide__name">Mina</span>
-                    <span class="rSlide__sep">·</span>
-                    <span class="rSlide__note">EU client</span>
-                  </div>
-                </div>
-              </article>
+              <!-- Review slides are rendered dynamically from data/testimonials.js -->
             </div>
 
             <div class="rDots" data-slider-dots aria-label="Reviews pagination"></div>
@@ -554,7 +448,7 @@
               </div>
             </div>
 
-            <!-- Форма резерва/консультации: премиальная, без «маркетплейс» вайба -->
+            <!-- Reservation form: premium and calm, not marketplace-like -->
             <form class="form" id="reserve-form" novalidate>
               <div class="form__row">
                 <label class="field">
@@ -670,7 +564,7 @@
       </div>
     </footer>
 
-    <!-- Плавающие контакты: WhatsApp/Telegram + консультация -->
+    <!-- Floating contacts: WhatsApp, Telegram, and consultation -->
     <div class="floaters" aria-label="Quick contacts">
       <a class="floater floater--wa" href="#" aria-label="WhatsApp (demo)" data-toast="WhatsApp chat (demo)">
         WA
@@ -683,7 +577,7 @@
       </button>
     </div>
 
-    <!-- Нижняя панель контактов для мобильных (не мешает, но всегда под рукой) -->
+    <!-- Mobile contact bar: always within reach without blocking content -->
     <div class="mobileBar" aria-label="Mobile contact bar">
       <a class="mobileBar__btn mobileBar__btn--tg" href="https://t.me/Pomeranianpuppies_mini_mishki" target="_blank" rel="noopener noreferrer" aria-label="Telegram" data-toast="Opening Telegram chat...">
         Telegram
@@ -696,7 +590,7 @@
       </button>
     </div>
 
-    <!-- Виджет «живой консультации» (демо) -->
+    <!-- Live consultation widget (demo) -->
     <dialog class="chat" id="chat">
       <form method="dialog" class="chat__card glass">
         <div class="chat__top">
@@ -729,6 +623,7 @@
     <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
     <script src="./data/puppies.js" defer></script>
+    <script src="./data/testimonials.js" defer></script>
     <script src="./script.js" defer></script>
   </body>
 </html>

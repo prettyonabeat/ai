@@ -25,7 +25,7 @@ const PUPPIES = [
     country: "USA delivery",
     delivery: "Ready for fast shipping",
     image: "images/9d0a64b67a66f918019076b176fc26b9.jpg",
-    description: "Richly marked Frenchie with a mellow temperament and elegant lines.",
+    description: "Tiny Pomeranian boy with a mellow temperament and elegant fluffy coat.",
     tags: ["Luxury", "Playful", "Pet-friendly"],
     status: "Available",
     size: "medium",
