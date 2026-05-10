@@ -411,42 +411,37 @@
             <form class="form" id="reserve-form" novalidate>
               <div class="form__row">
                 <label class="field">
-                  <span class="field__label">Name</span>
+                  <span class="field__label">Имя</span>
                   <input class="field__input" name="name" type="text" autocomplete="name" required minlength="2" />
                   <span class="field__error" aria-live="polite"></span>
                 </label>
                 <label class="field">
-                  <span class="field__label">Email</span>
-                  <input class="field__input" name="email" type="email" autocomplete="email" required />
-                  <span class="field__error" aria-live="polite"></span>
-                </label>
-              </div>
-
-              <div class="form__row">
-                <label class="field">
-                  <span class="field__label">Region</span>
-                  <select class="field__input" name="region" required>
-                    <option value="" selected disabled>Select</option>
-                    <option value="eu">Europe</option>
-                    <option value="us">USA</option>
-                    <option value="both">EU &amp; USA</option>
-                  </select>
-                  <span class="field__error" aria-live="polite"></span>
-                </label>
-                <label class="field">
-                  <span class="field__label">Contact</span>
-                  <select class="field__input" name="contact" required>
-                    <option value="" selected disabled>Select</option>
-                    <option value="email">Email</option>
-                    <option value="whatsapp">WhatsApp</option>
-                    <option value="telegram">Telegram</option>
+                  <span class="field__label">Способ связи</span>
+                  <select class="field__input" name="contactMethod" required>
+                    <option value="" selected disabled>Выберите</option>
+                    <option value="Telegram">Telegram</option>
+                    <option value="WhatsApp">WhatsApp</option>
                   </select>
                   <span class="field__error" aria-live="polite"></span>
                 </label>
               </div>
 
               <label class="field">
-                <span class="field__label">Message</span>
+                <span class="field__label">Ваш контакт</span>
+                <input
+                  class="field__input"
+                  name="contactValue"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="@username или номер WhatsApp"
+                  required
+                  minlength="3"
+                />
+                <span class="field__error" aria-live="polite"></span>
+              </label>
+
+              <label class="field">
+                <span class="field__label">Сообщение</span>
                 <textarea
                   class="field__input field__input--area"
                   name="message"
@@ -460,7 +455,7 @@
 
               <div class="form__actions">
                 <button class="btn btn--primary" type="submit">
-                  <span>Request consultation</span>
+                  <span>Запросить консультацию</span>
                   <span class="btn__spark" aria-hidden="true"></span>
                 </button>
                 <p class="form__note">No spam. Only curated options and transparent documentation.</p>

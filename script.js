@@ -474,6 +474,28 @@ function validateField(field) {
   return ok;
 }
 
+async function sendTelegramRequest(form) {
+  const data = Object.fromEntries(new FormData(form).entries());
+  const response = await fetch("/api/send-telegram", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: data.name,
+      contactMethod: data.contactMethod,
+      contactValue: data.contactValue,
+      message: data.message,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Telegram request failed");
+  }
+
+  return response.json();
+}
+
 function setupForm(formId, sentMessage) {
   const form = document.getElementById(formId);
   if (!form) return;
@@ -511,20 +533,23 @@ function setupForm(formId, sentMessage) {
       submit.style.opacity = "0.9";
     }
 
-    // Simulate a premium submission as if a concierge request was created.
-    await new Promise((r) => setTimeout(r, 850));
-    form.reset();
-    fields.forEach((f) => {
-      f.dataset.invalid = "false";
-      const err = $(".field__error", f);
-      if (err) err.textContent = "";
-    });
+    try {
+      await sendTelegramRequest(form);
+      form.reset();
+      fields.forEach((f) => {
+        f.dataset.invalid = "false";
+        const err = $(".field__error", f);
+        if (err) err.textContent = "";
+      });
 
-    showToast(sentMessage);
-
-    if (submit) {
-      submit.disabled = false;
-      submit.style.opacity = "1";
+      showToast(sentMessage);
+    } catch (err) {
+      showToast("Не удалось отправить заявку. Попробуйте позже.");
+    } finally {
+      if (submit) {
+        submit.disabled = false;
+        submit.style.opacity = "1";
+      }
     }
   });
 }
@@ -961,5 +986,5 @@ setupFinder();
 setupChatWidget();
 setupMobileConsultButton();
 setupChatDialogCloseToast();
-setupForm("reserve-form", "Request sent");
+setupForm("reserve-form", "Спасибо! Мы скоро свяжемся с вами.");
 setupFooterMiniForm();
