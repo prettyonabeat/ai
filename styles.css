@@ -156,12 +156,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .brand__logo{
   width:44px;height:44px;
   border-radius: 16px;
-  display:grid; place-items:center;
-  font-family: var(--serif);
-  font-weight:700;
-  background: linear-gradient(135deg, var(--cream), rgba(168,181,162,.30));
   border: 1px solid rgba(29,27,24,.10);
   box-shadow: 0 18px 50px rgba(29,27,24,.10);
+  object-fit: cover;
 }
 .brand__name{
   display:block;
