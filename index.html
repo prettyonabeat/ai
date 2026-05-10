@@ -77,15 +77,19 @@
       <!-- HERO -->
       <section class="heroCine" id="top" aria-label="Premium puppy concierge" data-hero>
         <div class="heroCine__bg" aria-hidden="true">
-          <img
-            class="heroCine__bgImg"
-            src="images/backend.png"
-            alt="Premium puppy concierge background"
-            loading="eager"
-            decoding="async"
-            fetchpriority="high"
-            sizes="100vw"
-          />
+          <picture>
+            <source srcset="images/backend.png" media="(min-width: 1024px)">
+            <source srcset="images/backend.png" media="(max-width: 1023px)">
+            <img
+              class="heroCine__bgImg"
+              src="images/backend.png"
+              alt="Premium puppy concierge background"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              sizes="100vw"
+            />
+          </picture>
           <div class="heroCine__bgVignette"></div>
           <div class="heroCine__bgWarm"></div>
           <canvas class="heroCine__dust" data-dust aria-hidden="true"></canvas>
@@ -724,6 +728,7 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
+    <script src="./data/puppies.js" defer></script>
     <script src="./script.js" defer></script>
   </body>
 </html>

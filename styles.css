@@ -349,6 +349,12 @@ button,input,select,textarea{font:inherit;color:inherit}
   will-change: transform;
   animation: heroZoom 18s var(--ease) infinite alternate;
 }
+
+@media (max-width: 767px) {
+  .heroCine__bgImg{
+    object-position:50% 32%;
+  }
+}
 @keyframes heroZoom{
   0%{transform: scale(1.08) translate3d(var(--hx, 0px), var(--hy, 0px), 0)}
   100%{transform: scale(1.14) translate3d(var(--hx, 0px), var(--hy, 0px), 0)}
@@ -948,6 +954,17 @@ button,input,select,textarea{font:inherit;color:inherit}
 }
 .puppy__meta{margin-top:2px; color: var(--muted); line-height:1.6}
 .puppy__facts{display:flex; flex-wrap:wrap; gap:8px}
+.puppy__description{
+  color: rgba(29,27,24,.78);
+  line-height:1.75;
+  font-size: 14px;
+  margin: 0;
+}
+.puppy__tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
 .pill{
   display:inline-flex;
   align-items:center;

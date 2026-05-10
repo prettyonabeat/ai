@@ -696,88 +696,6 @@ function setupSliders() {
   $$("[data-slider]").forEach((root) => createSlider(root));
 }
 
-// Данные щенков (демо), чтобы сайт выглядел «живым» и убедительным
-const PUPPIES = [
-  {
-    id: "luna",
-    name: "Luna",
-    breed: "Cavalier King Charles Spaniel",
-    gender: "female",
-    ageWeeks: 14,
-    country: "France",
-    size: "small",
-    price: 8200,
-    delivery: "EU & USA",
-    traits: ["calm", "cuddly", "gentle"],
-    img: "https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=1400&q=80",
-  },
-  {
-    id: "milo",
-    name: "Milo",
-    breed: "Golden Retriever",
-    gender: "male",
-    ageWeeks: 16,
-    country: "USA",
-    size: "large",
-    price: 7400,
-    delivery: "USA",
-    traits: ["playful", "gentle", "smart"],
-    img: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1400&q=80",
-  },
-  {
-    id: "nori",
-    name: "Nori",
-    breed: "Toy Poodle",
-    gender: "female",
-    ageWeeks: 13,
-    country: "Italy",
-    size: "small",
-    price: 9600,
-    delivery: "EU & USA",
-    traits: ["smart", "cuddly", "calm"],
-    img: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=1400&q=80",
-  },
-  {
-    id: "atlas",
-    name: "Atlas",
-    breed: "French Bulldog",
-    gender: "male",
-    ageWeeks: 15,
-    country: "Spain",
-    size: "medium",
-    price: 6900,
-    delivery: "EU",
-    traits: ["playful", "cuddly", "gentle"],
-    img: "https://images.unsplash.com/photo-1583511655826-05700d52f4d9?auto=format&fit=crop&w=1400&q=80",
-  },
-  {
-    id: "sage",
-    name: "Sage",
-    breed: "Miniature Schnauzer",
-    gender: "female",
-    ageWeeks: 17,
-    country: "Germany",
-    size: "medium",
-    price: 6100,
-    delivery: "EU & USA",
-    traits: ["smart", "adventurous", "gentle"],
-    img: "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1400&q=80",
-  },
-  {
-    id: "cosmo",
-    name: "Cosmo",
-    breed: "Shiba Inu",
-    gender: "male",
-    ageWeeks: 18,
-    country: "USA",
-    size: "medium",
-    price: 8800,
-    delivery: "USA",
-    traits: ["adventurous", "smart", "playful"],
-    img: "https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?auto=format&fit=crop&w=1400&q=80",
-  },
-];
-
 function uniq(arr) {
   return [...new Set(arr)];
 }
@@ -861,7 +779,8 @@ function setupFinder() {
     if (f.gender !== "any" && p.gender !== f.gender) return false;
     if (f.country !== "any" && p.country !== f.country) return false;
     if (f.size !== "any" && p.size !== f.size) return false;
-    if (p.price > f.budget) return false;
+    const priceValue = Number(String(p.price).replace(/[^\d]/g, "")) || 0;
+    if (priceValue > f.budget) return false;
     if (f.traits.length) {
       // Все выбранные traits должны встречаться в карточке (строже, но «консьерж» ощущение)
       for (const t of f.traits) if (!p.traits.includes(t)) return false;
@@ -874,22 +793,25 @@ function setupFinder() {
     card.className = "puppy glass";
     card.innerHTML = `
       <div class="puppy__media">
-        <img src="${p.img}" alt="${p.breed} puppy named ${p.name}" loading="lazy" decoding="async" />
-        <div class="puppy__badge">${p.delivery}</div>
+        <img src="${p.image}" alt="${p.breed} puppy named ${p.name}" loading="lazy" decoding="async" />
+        <div class="puppy__badge">${p.status}</div>
       </div>
       <div class="puppy__titleRow">
         <div>
           <h3 class="puppy__name">${p.name}</h3>
-          <div class="puppy__meta">${p.breed} · ${p.ageWeeks} weeks · ${p.country}</div>
+          <div class="puppy__meta">${p.breed} · ${p.gender} · ${p.age}</div>
         </div>
+        <div class="price">${p.price}</div>
       </div>
+      <p class="puppy__description">${p.description}</p>
       <div class="puppy__facts">
-        <span class="pill">${p.size}</span>
-        <span class="pill">${p.gender}</span>
-        <span class="pill pill--soft">verified</span>
+        <span class="pill">${p.country}</span>
+        <span class="pill">${p.delivery}</span>
       </div>
+      <div class="puppy__tags">${p.tags
+        .map((tag) => `<span class="pill pill--soft">${tag}</span>`)
+        .join("")}</div>
       <div class="puppy__bottom">
-        <div class="price">$${fmtInt(p.price)} <span>estimated</span></div>
         <button class="btn btn--primary btn--sm" type="button" data-toast="Request sent (demo)">Request Puppy</button>
       </div>
     `;
@@ -901,13 +823,23 @@ function setupFinder() {
     const matched = PUPPIES.filter((p) => match(p, f));
 
     countEl.textContent = String(matched.length);
+    if (!PUPPIES.length) {
+      sub.textContent = "No puppies available right now. Contact us for personal matching.";
+      results.innerHTML = `<div class="sectionMini__note">No puppies available right now. Contact us for personal matching.</div>`;
+      return;
+    }
+
     sub.textContent =
       matched.length === 0
         ? "No exact matches — try widening budget or removing a trait."
         : "Curated puppies ready for safe delivery.";
 
     results.innerHTML = "";
-    matched.forEach((p) => results.appendChild(renderCard(p)));
+    if (!matched.length) {
+      results.innerHTML = `<div class="sectionMini__note">No exact matches — try widening budget or removing a trait.</div>`;
+    } else {
+      matched.forEach((p) => results.appendChild(renderCard(p)));
+    }
   };
 
   // Мгновенные обновления (не только по submit)
