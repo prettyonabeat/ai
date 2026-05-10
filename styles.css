@@ -417,15 +417,17 @@ button,input,select,textarea{font:inherit;color:inherit}
   z-index: 3;
   display:grid;
   align-items:center;
-  padding: clamp(76px, 10svh, 130px) 0 clamp(40px, 7svh, 70px);
+  padding: clamp(92px, 13svh, 150px) 0 clamp(54px, 8svh, 82px);
 }
 .heroCine__stack{
   position:relative;
   display:grid;
-  gap: 16px;
+  gap: clamp(18px, 2.6vw, 28px);
   justify-items:center;
   text-align:center;
   color: rgba(255,255,255,.94);
+  min-height: clamp(480px, 68svh, 720px);
+  align-content:center;
 }
 .heroCine__topline{
   display:flex;
@@ -446,7 +448,7 @@ button,input,select,textarea{font:inherit;color:inherit}
   -webkit-backdrop-filter: blur(16px) saturate(1.05);
   box-shadow: 0 24px 90px rgba(0,0,0,.22);
 }
-.heroCine__headline{max-width: 60rem}
+.heroCine__headline{max-width: 62rem}
 .heroCine__title{
   margin:0;
   font-family: var(--rounded);
@@ -457,8 +459,8 @@ button,input,select,textarea{font:inherit;color:inherit}
   text-shadow: 0 18px 55px rgba(0,0,0,.30), 0 2px 0 rgba(0,0,0,.12);
 }
 .heroCine__sub{
-  margin: 14px auto 0;
-  max-width: 58ch;
+  margin: 18px auto 0;
+  max-width: 54ch;
   font-family: var(--rounded);
   font-size: clamp(16px, 1.9vw, 20px);
   line-height: 1.7;
@@ -537,24 +539,31 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 .heroCine__cta{
   display:flex;
-  gap: 12px;
   justify-content:center;
-  flex-wrap:wrap;
-  margin-top: 2px;
+  margin-top: 4px;
 }
-.heroCine__cta .btn{
-  box-shadow: 0 28px 110px rgba(0,0,0,.26);
-}
-.heroCine__cta .btn--secondary{
-  background: rgba(250,248,245,.14);
-  border-color: rgba(255,255,255,.18);
-  color: rgba(255,255,255,.92);
+.heroCine__primaryCta{
+  min-height: 58px;
+  padding: 16px 28px;
+  border: 1px solid rgba(255,255,255,.34);
+  background: linear-gradient(135deg, rgba(255,255,255,.72), rgba(245,239,231,.34));
+  color: rgba(29,27,24,.94);
+  box-shadow: 0 30px 110px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.74);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+  font-size: 15px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease);
 }
-.heroCine__cta .btn--secondary:hover{
-  background: rgba(250,248,245,.18);
-  border-color: rgba(255,255,255,.22);
+.heroCine__primaryCta:hover{
+  transform: translateY(-2px) scale(1.04);
+  border-color: rgba(255,255,255,.54);
+  background: linear-gradient(135deg, rgba(255,255,255,.82), rgba(245,239,231,.44));
+  box-shadow: 0 38px 130px rgba(0,0,0,.34), 0 0 42px rgba(168,181,162,.22), inset 0 1px 0 rgba(255,255,255,.86);
+}
+.heroCine__primaryCta:active{
+  transform: scale(.98);
 }
 
 .heroSocial{
@@ -1440,9 +1449,17 @@ button,input,select,textarea{font:inherit;color:inherit}
   .nav[data-open="true"] .nav__panel{opacity:1; transform: translateY(0); pointer-events:auto}
   .nav__link{padding: 14px 14px; font-size: 12px}
   .heroCine{height: auto; min-height: 100svh}
-  .heroCine__content{padding: 86px 0 42px}
-  .heroCine__topline{gap: 8px}
-  .heroSocial{grid-template-columns: 1fr}
+  .heroCine__content{padding: 92px 0 58px}
+  .heroCine__stack{
+    min-height: calc(100svh - 150px);
+    gap: 18px;
+  }
+  .heroCine__sub{margin-top: 14px}
+  .heroSearch{width: min(100%, 620px)}
+  .heroCine__primaryCta{
+    min-height: 54px;
+    padding: 15px 24px;
+  }
   .heroFloat{display:none}
   .heroEyes{display:none}
   .heroTrust__grid{grid-template-columns: 1fr 1fr}
