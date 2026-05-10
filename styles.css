@@ -264,6 +264,8 @@ button,input,select,textarea{font:inherit;color:inherit}
   position:relative;
   isolation:isolate;
   white-space:nowrap;
+  text-decoration:none;
+  color:inherit;
 }
 .btn:active{transform: translateY(1px)}
 .btn--sm{padding: 10px 14px; font-size:13px}

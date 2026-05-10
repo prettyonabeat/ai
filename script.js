@@ -700,6 +700,13 @@ function uniq(arr) {
   return [...new Set(arr)];
 }
 
+// Генерирует ссылку на Telegram с префаззыполненным сообщением о щенке
+function generateTelegramLink(puppy) {
+  const message = `Hello! I'm interested in ${puppy.name}, ${puppy.breed}, ${puppy.age}, price ${puppy.price}. Please contact me.`;
+  const encodedMessage = encodeURIComponent(message);
+  return `https://t.me/k_white?text=${encodedMessage}`;
+}
+
 function setupFinder() {
   const form = $("#finder-form");
   const results = $("#results");
@@ -791,6 +798,7 @@ function setupFinder() {
   const renderCard = (p) => {
     const card = document.createElement("article");
     card.className = "puppy glass";
+    const telegramLink = generateTelegramLink(p);
     card.innerHTML = `
       <div class="puppy__media">
         <img src="${p.image}" alt="${p.breed} puppy named ${p.name}" loading="lazy" decoding="async" />
@@ -812,7 +820,7 @@ function setupFinder() {
         .map((tag) => `<span class="pill pill--soft">${tag}</span>`)
         .join("")}</div>
       <div class="puppy__bottom">
-        <button class="btn btn--primary btn--sm" type="button" data-toast="Request sent (demo)">Request Puppy</button>
+        <a class="btn btn--primary btn--sm" href="${telegramLink}" target="_blank" rel="noopener noreferrer">Request Puppy</a>
       </div>
     `;
     return card;
