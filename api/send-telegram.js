@@ -6,12 +6,12 @@ function sanitize(value) {
 
 function buildMessage({ name, contactMethod, contactValue, message }) {
   return [
-    "Новая заявка с сайта PawCierge 🐾",
+    "New request from PawCierge website 🐾",
     "",
-    `Имя: ${name}`,
-    `Способ связи: ${contactMethod}`,
-    `Контакт: ${contactValue}`,
-    `Сообщение: ${message}`,
+    `Name: ${name}`,
+    `Contact method: ${contactMethod}`,
+    `Contact: ${contactValue}`,
+    `Message: ${message}`,
   ].join("\n");
 }
 

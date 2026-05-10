@@ -591,7 +591,7 @@ function setupForm(formId, sentMessage) {
 
       showToast(sentMessage);
     } catch (err) {
-      showToast("Не удалось отправить заявку. Попробуйте позже.");
+      showToast("We couldn't send your request. Please try again later.");
     } finally {
       if (submit) {
         submit.disabled = false;
@@ -1033,5 +1033,5 @@ setupFinder();
 setupChatWidget();
 setupMobileConsultButton();
 setupChatDialogCloseToast();
-setupForm("reserve-form", "Спасибо! Мы скоро свяжемся с вами.");
+setupForm("reserve-form", "Thank you! We'll contact you soon.");
 setupFooterMiniForm();

@@ -406,14 +406,14 @@
             <form class="form" id="reserve-form" novalidate>
               <div class="form__row">
                 <label class="field">
-                  <span class="field__label">Имя</span>
+                  <span class="field__label">Name</span>
                   <input class="field__input" name="name" type="text" autocomplete="name" required minlength="2" />
                   <span class="field__error" aria-live="polite"></span>
                 </label>
                 <label class="field">
-                  <span class="field__label">Способ связи</span>
+                  <span class="field__label">Preferred contact method</span>
                   <select class="field__input" name="contactMethod" required>
-                    <option value="" selected disabled>Выберите</option>
+                    <option value="" selected disabled>Select</option>
                     <option value="Telegram">Telegram</option>
                     <option value="WhatsApp">WhatsApp</option>
                   </select>
@@ -422,13 +422,13 @@
               </div>
 
               <label class="field">
-                <span class="field__label">Ваш контакт</span>
+                <span class="field__label">Your contact</span>
                 <input
                   class="field__input"
                   name="contactValue"
                   type="text"
                   autocomplete="off"
-                  placeholder="@username или номер WhatsApp"
+                  placeholder="@username or WhatsApp number"
                   required
                   minlength="3"
                 />
@@ -436,7 +436,7 @@
               </label>
 
               <label class="field">
-                <span class="field__label">Сообщение</span>
+                <span class="field__label">Message</span>
                 <textarea
                   class="field__input field__input--area"
                   name="message"
@@ -450,7 +450,7 @@
 
               <div class="form__actions">
                 <button class="btn btn--primary" type="submit">
-                  <span>Запросить консультацию</span>
+                  <span>Request consultation</span>
                   <span class="btn__spark" aria-hidden="true"></span>
                 </button>
                 <p class="form__note">No spam. Only curated options and transparent documentation.</p>
