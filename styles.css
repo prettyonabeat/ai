@@ -1202,22 +1202,29 @@ button,input,select,textarea{font:inherit;color:inherit}
 }
 .floater{
   width: 54px; height: 54px;
-  border-radius: 20px;
+  border-radius: 999px;
   display:grid; place-items:center;
   border: 1px solid rgba(29,27,24,.10);
   background: rgba(250,248,245,.86);
   box-shadow: var(--shadow);
-  transition: transform .22s var(--ease), background .22s var(--ease);
+  backdrop-filter: blur(14px) saturate(1.05);
+  -webkit-backdrop-filter: blur(14px) saturate(1.05);
+  transition: transform .24s var(--ease), box-shadow .24s var(--ease), border-color .24s var(--ease);
   text-decoration: none;
   color: inherit;
 }
-.floater:hover{transform: translateY(-2px)}
+.floater:hover{
+  transform: translateY(-2px) scale(1.06);
+  border-color: rgba(29,27,24,.16);
+  box-shadow: 0 26px 80px rgba(29,27,24,.16);
+}
+.floater img{
+  width: 25px;
+  height: 25px;
+  display:block;
+}
 .floater--wa{background: linear-gradient(180deg, rgba(168,181,162,.26), rgba(250,248,245,.88))}
 .floater--tg{background: linear-gradient(180deg, rgba(200,182,166,.22), rgba(250,248,245,.88))}
-.floater--chat{
-  cursor:pointer;
-  background: linear-gradient(135deg, rgba(245,239,231,.90), rgba(234,223,211,.72));
-}
 
 /* Chat dialog */
 .chat{
@@ -1409,9 +1416,18 @@ button,input,select,textarea{font:inherit;color:inherit}
   .finder__grid{grid-template-columns: 1fr}
 
   /* Bottom bar spacing so it does not cover content */
-  .mobileBar{display:grid}
-  body{padding-bottom: 98px}
-  .floaters{display:none}
+  .mobileBar{display:none}
+  body{padding-bottom: 92px}
+  .floaters{
+    display:flex;
+    right: 14px;
+    bottom: 14px;
+    gap: 9px;
+  }
+  .floater{
+    width: 52px;
+    height: 52px;
+  }
 
   .storyGrid{grid-template-columns: 1fr}
   .resultsGrid{grid-template-columns: 1fr}
