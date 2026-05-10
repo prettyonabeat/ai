@@ -189,6 +189,7 @@ button,input,select,textarea{font:inherit;color:inherit}
   text-transform:uppercase;
   color: rgba(29,27,24,.78);
   transition: transform .22s var(--ease), background .22s var(--ease), border-color .22s var(--ease);
+  text-decoration: none;
 }
 .nav__icon:hover{
   transform: translateY(-1px);
@@ -721,6 +722,8 @@ button,input,select,textarea{font:inherit;color:inherit}
   cursor:pointer;
   transition: transform .22s var(--ease), background .22s var(--ease), border-color .22s var(--ease);
   user-select:none;
+  text-decoration: none;
+  color: inherit;
 }
 .mobileBar__btn:active{transform: translateY(1px)}
 .mobileBar__btn--tg{background: linear-gradient(180deg, rgba(200,182,166,.22), rgba(250,248,245,.88))}
@@ -1205,6 +1208,8 @@ button,input,select,textarea{font:inherit;color:inherit}
   background: rgba(250,248,245,.86);
   box-shadow: var(--shadow);
   transition: transform .22s var(--ease), background .22s var(--ease);
+  text-decoration: none;
+  color: inherit;
 }
 .floater:hover{transform: translateY(-2px)}
 .floater--wa{background: linear-gradient(180deg, rgba(168,181,162,.26), rgba(250,248,245,.88))}

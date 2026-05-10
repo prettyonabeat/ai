@@ -704,7 +704,7 @@ function uniq(arr) {
 function generateTelegramLink(puppy) {
   const message = `Hello! I'm interested in ${puppy.name}, ${puppy.breed}, ${puppy.age}, price ${puppy.price}. Please contact me.`;
   const encodedMessage = encodeURIComponent(message);
-  return `https://t.me/k_white?text=${encodedMessage}`;
+  return `https://t.me/pomeranian_mini_mishki?text=${encodedMessage}`;
 }
 
 function setupFinder() {
